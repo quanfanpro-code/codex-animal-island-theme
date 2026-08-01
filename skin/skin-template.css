@@ -1,0 +1,356 @@
+﻿/* animal-island-runtime-skin
+ * Codex 狸克手机主题。全部图像素材来自 animal-island-ui 固定版本。
+ */
+
+:root,
+:root.electron-light,
+:root.electron-dark {
+  --nook-mint: #82cfa5;
+  --nook-mint-deep: #56b984;
+  --nook-main-green: #72c99a;
+  --nook-sidebar-cream: #f8f4e8;
+  --nook-teal: #19c8b9;
+  --nook-teal-deep: #0f9185;
+  --nook-brown: #794f27;
+  --nook-brown-deep: #57391a;
+  --nook-cream: #f8f8f0;
+  --nook-cream-deep: #eee8d2;
+  --nook-yellow: #f5c31c;
+  --nook-green: #6fba2c;
+  --nook-red: #e05a5a;
+  --nook-shadow: 0 12px 30px rgb(87 57 26 / 16%);
+
+  --codex-base-accent: var(--nook-teal) !important;
+  --codex-base-ink: var(--nook-brown) !important;
+  --codex-base-surface: var(--nook-main-green) !important;
+  --color-accent-blue: var(--nook-teal-deep) !important;
+  --color-background-surface: var(--nook-main-green) !important;
+  --color-background-surface-under: var(--nook-mint-deep) !important;
+  --color-background-elevated-primary: var(--nook-cream) !important;
+  --color-background-elevated-primary-opaque: var(--nook-cream) !important;
+  --color-background-elevated-secondary: var(--nook-cream-deep) !important;
+  --color-background-elevated-secondary-opaque: var(--nook-cream-deep) !important;
+  --color-background-button-primary: var(--nook-teal-deep) !important;
+  --color-background-button-primary-hover: #087c72 !important;
+  --color-background-button-secondary: #efe2b5 !important;
+  --color-background-button-secondary-hover: #e6d49c !important;
+  --color-background-control: var(--nook-cream) !important;
+  --color-background-control-opaque: var(--nook-cream) !important;
+  --color-border-default: rgb(121 79 39 / 24%) !important;
+  --color-border-heavy: rgb(121 79 39 / 42%) !important;
+  --color-text-primary: var(--nook-brown-deep) !important;
+  --color-text-secondary: #79522f !important;
+  --color-text-tertiary: #98724f !important;
+  --color-text-accent: var(--nook-teal-deep) !important;
+  --color-icon-accent: var(--nook-teal-deep) !important;
+  --color-token-editor-background: var(--nook-mint) !important;
+  --color-token-main-surface-primary: var(--nook-main-green) !important;
+  --color-token-side-bar-background: var(--nook-mint) !important;
+  --color-token-list-hover-background: #fff4c7 !important;
+  --color-token-list-active-selection-background: var(--nook-cream) !important;
+  --color-token-input-background: var(--nook-cream) !important;
+  --color-token-menu-background: var(--nook-cream) !important;
+  --color-token-dropdown-background: var(--nook-cream) !important;
+  --color-token-focus-border: var(--nook-teal-deep) !important;
+  --color-token-text-link-foreground: var(--nook-teal-deep) !important;
+  --color-token-foreground: var(--nook-brown-deep) !important;
+  color-scheme: light !important;
+}
+
+html,
+body,
+#root {
+  background-color: var(--nook-mint-deep) !important;
+  color: var(--nook-brown-deep) !important;
+  font-family: Nunito, "Noto Sans SC", "Microsoft YaHei UI", sans-serif !important;
+}
+
+body {
+  background-image: url("__CONTENT_BG_PC__") !important;
+  background-repeat: repeat !important;
+  background-size: 470px 470px !important;
+}
+
+#root {
+  position: relative !important;
+  isolation: isolate !important;
+}
+
+/* 把主区做成狸克手机的圆角屏幕，而不是只换一个底色。 */
+[data-app-shell-main-surface="default"] {
+  position: relative !important;
+  margin: 0 8px 0 0 !important;
+  overflow: hidden !important;
+  border: 3px solid rgb(87 57 26 / 24%) !important;
+  border-radius: 14px !important;
+  background-color: var(--nook-main-green) !important;
+  background-image: url("__CONTENT_BG_PC__") !important;
+  background-repeat: repeat !important;
+  background-size: 470px 470px !important;
+  box-shadow: var(--nook-shadow) !important;
+}
+
+[data-app-shell-main-surface="default"]::after {
+  position: absolute !important;
+  right: 20px !important;
+  bottom: 126px !important;
+  z-index: 0 !important;
+  width: min(190px, 17vw) !important;
+  height: min(142px, 16vh) !important;
+  content: "" !important;
+  pointer-events: none !important;
+  background: url("__ANIMAL_ICON__") right bottom / contain no-repeat !important;
+  filter: drop-shadow(0 8px 8px rgb(87 57 26 / 16%)) !important;
+  opacity: 0.46 !important;
+}
+
+/* 网站原白色分隔线只作为底部小装饰，不再穿过任何文字或控件。 */
+[data-app-shell-main-surface="default"]::before {
+  position: absolute !important;
+  bottom: 18px !important;
+  left: 50% !important;
+  z-index: 0 !important;
+  width: 190px !important;
+  height: 14px !important;
+  content: "" !important;
+  pointer-events: none !important;
+  background: url("__DIVIDER_WHITE__") center / contain no-repeat !important;
+  opacity: 0.72 !important;
+  transform: translateX(-50%) !important;
+}
+
+[data-app-shell-main-content-layout],
+[data-app-shell-main-content-top-fade],
+.bg-token-bg-primary,
+.bg-token-main-surface-primary,
+[class*="bg-token-main-surface-primary"] {
+  background-color: transparent !important;
+  color: var(--nook-brown-deep) !important;
+}
+
+/* C「狸克手机」原稿：奶油菜单底、底部蓝绿色岛屿波浪、青绿导航。 */
+.app-shell-left-panel,
+[data-testid="app-shell-floating-left-panel"] {
+  overflow: hidden !important;
+  border: 0 !important;
+  border-radius: 14px 14px 0 0 !important;
+  background-color: var(--nook-sidebar-cream) !important;
+  background-image: url("__MENU_BG_SVG__") !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: cover !important;
+  color: var(--nook-brown-deep) !important;
+  box-shadow: inset -2px 0 0 rgb(24 127 117 / 26%) !important;
+}
+
+.app-shell-left-panel > div,
+[data-testid="app-shell-floating-left-panel"] > div {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.app-shell-left-panel :is(button, a, span, p),
+[data-testid="app-shell-floating-left-panel"] :is(button, a, span, p) {
+  color: var(--nook-brown-deep) !important;
+}
+
+.sidebar-item {
+  width: auto !important;
+  margin: 3px 30px 3px 12px !important;
+  border: 1px solid transparent !important;
+  border-radius: 14px !important;
+  background: var(--nook-sidebar-cream) !important;
+  color: var(--nook-brown-deep) !important;
+  transition: transform 120ms ease, background-color 120ms ease, box-shadow 120ms ease !important;
+}
+
+.sidebar-item:hover {
+  border-color: rgb(24 127 117 / 24%) !important;
+  background: #aee1cb !important;
+  box-shadow: 0 4px 10px rgb(87 57 26 / 10%) !important;
+  transform: translateX(3px) !important;
+}
+
+.sidebar-item[aria-current="page"],
+.sidebar-item[data-state="active"],
+[data-selected="true"].sidebar-item {
+  border-color: rgb(24 127 117 / 44%) !important;
+  background-color: #aee1cb !important;
+  background-image: url("__ICON_LEAF__") !important;
+  background-repeat: no-repeat !important;
+  background-position: left 10px center !important;
+  background-size: 18px 18px !important;
+  padding-left: 38px !important;
+  box-shadow: 0 5px 14px rgb(87 57 26 / 13%) !important;
+}
+
+/* 账户入口原本内外两层都带 sidebar-item，悬停时只保留外层框。 */
+.sidebar-item .sidebar-item {
+  width: 100% !important;
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.sidebar-item .sidebar-item:hover {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* 左下账户条始终透明，让底部岛屿图案完整透出。 */
+.sidebar-item:has(> .sidebar-item) {
+  background: transparent !important;
+}
+
+.sidebar-item:has(> .sidebar-item):hover,
+.sidebar-item:has(> .sidebar-item):active,
+.sidebar-item:has(> .sidebar-item):focus-within,
+.sidebar-item:has(> .sidebar-item) > .sidebar-item:hover,
+.sidebar-item:has(> .sidebar-item) > .sidebar-item:active,
+.sidebar-item:has(> .sidebar-item) > .sidebar-item:focus-visible {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.sidebar-item svg {
+  color: #187f75 !important;
+}
+
+/* “最近”与项目任务列表默认透明，让底部岛屿波浪完整露出。 */
+.app-shell-left-panel div.sidebar-item.group:not([aria-current="page"]):not([data-state="active"]):not([data-selected="true"]),
+[data-testid="app-shell-floating-left-panel"] div.sidebar-item.group:not([aria-current="page"]):not([data-state="active"]):not([data-selected="true"]) {
+  background: transparent !important;
+}
+
+.app-shell-left-panel div.sidebar-item.group:not([aria-current="page"]):not([data-state="active"]):not([data-selected="true"]):hover,
+[data-testid="app-shell-floating-left-panel"] div.sidebar-item.group:not([aria-current="page"]):not([data-state="active"]):not([data-selected="true"]):hover {
+  background: #aee1cb !important;
+}
+
+/* 保留原标签布局，只换颜色，避免聊天/工作切换按钮被挤压。 */
+[data-app-shell-tab-strip-controller],
+.app-shell-tab-strip,
+.app-shell-tabs {
+  background-color: transparent !important;
+  color: var(--nook-brown-deep) !important;
+}
+
+[data-app-shell-tab-controller] {
+  color: var(--nook-brown-deep) !important;
+  box-shadow: none !important;
+}
+
+[data-app-shell-tab-controller][aria-selected="true"] {
+  box-shadow: inset 0 -3px 0 var(--nook-yellow) !important;
+}
+
+/* 对话、菜单和输入框统一为扎实的奶油色卡片。 */
+.composer-surface-chrome {
+  position: relative !important;
+  z-index: 3 !important;
+  border: 2px solid rgb(15 145 133 / 48%) !important;
+  border-radius: 28px !important;
+  background: var(--nook-cream) !important;
+  box-shadow: 0 10px 24px rgb(87 57 26 / 16%) !important;
+}
+
+[data-app-shell-main-surface="default"] [class*="text-token-text-secondary"],
+[data-app-shell-main-surface="default"] [class*="text-token-text-tertiary"] {
+  color: #674422 !important;
+}
+
+[role="dialog"],
+[role="menu"],
+[data-radix-popper-content-wrapper] > div,
+[class*="bg-token-dropdown-background"] {
+  border: 2px solid rgb(121 79 39 / 22%) !important;
+  border-radius: 22px !important;
+  background-color: var(--nook-cream) !important;
+  color: var(--nook-brown-deep) !important;
+  box-shadow: var(--nook-shadow) !important;
+}
+
+/* 账户菜单与剩余用量区域始终使用深棕字，避免文字陷进浅色背景。 */
+[role="menu"] *,
+[class*="bg-token-dropdown-background"] * {
+  color: var(--nook-brown-deep) !important;
+  opacity: 1 !important;
+}
+
+input,
+textarea,
+select {
+  border-color: rgb(121 79 39 / 25%) !important;
+  border-radius: 18px !important;
+  background-color: var(--nook-cream) !important;
+  color: var(--nook-brown-deep) !important;
+}
+
+/* 输入区模型、推理强度和权限文字必须始终清晰。 */
+.composer-surface-chrome button,
+.composer-surface-chrome button span {
+  color: var(--nook-brown-deep) !important;
+  opacity: 1 !important;
+}
+
+.composer-surface-chrome button[class*="text-token-text-tertiary"] {
+  border-radius: 13px !important;
+  font-weight: 650 !important;
+}
+
+.composer-surface-chrome button[class*="text-token-text-tertiary"]:hover {
+  background: #e1f5eb !important;
+}
+
+.composer-surface-chrome button[data-testid*="send"],
+.composer-surface-chrome button[aria-label*="Send"],
+.composer-surface-chrome button[aria-label*="发送"],
+.composer-surface-chrome button[aria-label="停止"] {
+  border: 2px solid rgb(87 57 26 / 18%) !important;
+  border-radius: 999px !important;
+  background: var(--nook-teal-deep) !important;
+  color: #fffdf3 !important;
+  box-shadow: 0 3px 0 rgb(87 57 26 / 18%) !important;
+}
+
+a {
+  color: var(--nook-teal-deep) !important;
+}
+
+code:not(pre code) {
+  border: 1px solid rgb(121 79 39 / 16%) !important;
+  border-radius: 9px !important;
+  background: var(--nook-cream-deep) !important;
+  color: var(--nook-brown-deep) !important;
+}
+
+pre {
+  border: 2px solid rgb(121 79 39 / 25%) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 8px 18px rgb(87 57 26 / 12%) !important;
+}
+
+::selection {
+  background: rgb(245 195 28 / 45%) !important;
+  color: var(--nook-brown-deep) !important;
+}
+
+::-webkit-scrollbar {
+  width: 12px !important;
+  height: 12px !important;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 3px solid transparent !important;
+  border-radius: 999px !important;
+  background: rgb(15 145 133 / 64%) !important;
+  background-clip: padding-box !important;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent !important;
+}

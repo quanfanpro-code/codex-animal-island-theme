@@ -1,0 +1,13 @@
+﻿{
+  "id": "codex-animal-island-nook-phone",
+  "name": "Codex 狸克手机",
+  "version": "1.2.3",
+  "platform": "Windows 10/11",
+  "requires": "PowerShell 7",
+  "target": "OpenAI.Codex",
+  "mode": "runtime-css-overlay",
+  "touchesCodexData": false,
+  "modifiesCodexInstallation": false,
+  "assetSource": "https://github.com/guokaigdg/animal-island-ui",
+  "assetCommit": "4eacb262d5aa1c8a1ee22e968617be4d1600217a"
+}

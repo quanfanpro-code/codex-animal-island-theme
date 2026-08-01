@@ -1,0 +1,43 @@
+{
+  "repository": "https://github.com/guokaigdg/animal-island-ui",
+  "commit": "4eacb262d5aa1c8a1ee22e968617be4d1600217a",
+  "license": "CC BY-NC 4.0",
+  "files": [
+    {
+      "source": "demo/img/content_bg_pc.jpg",
+      "local": "assets/source/content_bg_pc.jpg",
+      "url": "https://github.com/guokaigdg/animal-island-ui/blob/4eacb262d5aa1c8a1ee22e968617be4d1600217a/demo/img/content_bg_pc.jpg",
+      "sha256": "b1594dccbbdea58865f6936f07d8e10a2dc54bac2c0f32f9e48ef9da31fc1835"
+    },
+    {
+      "source": "demo/img/menu_bg.jpg",
+      "local": "assets/source/menu_bg.jpg",
+      "url": "https://github.com/guokaigdg/animal-island-ui/blob/4eacb262d5aa1c8a1ee22e968617be4d1600217a/demo/img/menu_bg.jpg",
+      "sha256": "c80fdb5ac62e73fad4aea6a034f6b3925dcbf5dff50ae42490410769154614db"
+    },
+    {
+      "source": "demo/img/menu_bg.svg",
+      "local": "assets/source/menu_bg.svg",
+      "url": "https://github.com/guokaigdg/animal-island-ui/blob/4eacb262d5aa1c8a1ee22e968617be4d1600217a/demo/img/menu_bg.svg",
+      "sha256": "5169eb05720d0a1951f5ac78854c96986b014d768adb5dbc5d8880e3d46115c9"
+    },
+    {
+      "source": "demo/img/animal_icon.png",
+      "local": "assets/source/animal_icon.png",
+      "url": "https://github.com/guokaigdg/animal-island-ui/blob/4eacb262d5aa1c8a1ee22e968617be4d1600217a/demo/img/animal_icon.png",
+      "sha256": "bba1a5b122bcc690af526b3725f3a8306197b3375fcaa917db3775f6b7628ac0"
+    },
+    {
+      "source": "src/assets/img/icons/icon-leaf.png",
+      "local": "assets/source/icon-leaf.png",
+      "url": "https://github.com/guokaigdg/animal-island-ui/blob/4eacb262d5aa1c8a1ee22e968617be4d1600217a/src/assets/img/icons/icon-leaf.png",
+      "sha256": "8b83c3f6310a8a4db9873722547b837fd8ba92364de9d5afc3a3559f858cc34e"
+    },
+    {
+      "source": "src/assets/img/dividers/divider-line-white.png",
+      "local": "assets/source/divider-line-white.png",
+      "url": "https://github.com/guokaigdg/animal-island-ui/blob/4eacb262d5aa1c8a1ee22e968617be4d1600217a/src/assets/img/dividers/divider-line-white.png",
+      "sha256": "e223a90d9f16a5c9164b81d93c694801cd03dd3131aff84c51192854ce36d7f1"
+    }
+  ]
+}
