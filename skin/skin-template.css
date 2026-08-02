@@ -13,6 +13,7 @@
   --nook-teal-deep: #0f9185;
   --nook-brown: #794f27;
   --nook-brown-deep: #57391a;
+  --nook-ink-contrast: #4a3016;
   --nook-cream: #f8f8f0;
   --nook-cream-deep: #eee8d2;
   --nook-yellow: #f5c31c;
@@ -41,6 +42,13 @@
   --color-text-primary: var(--nook-brown-deep) !important;
   --color-text-secondary: #79522f !important;
   --color-text-tertiary: #98724f !important;
+  --color-token-text-primary: var(--nook-brown-deep) !important;
+  --color-token-text-secondary: var(--nook-ink-contrast) !important;
+  --color-token-text-tertiary: var(--nook-ink-contrast) !important;
+  --color-token-description-foreground: var(--nook-ink-contrast) !important;
+  --color-token-conversation-body: var(--nook-ink-contrast) !important;
+  --color-token-conversation-summary-leading: var(--nook-ink-contrast) !important;
+  --color-token-conversation-summary-trailing: var(--nook-ink-contrast) !important;
   --color-text-accent: var(--nook-teal-deep) !important;
   --color-icon-accent: var(--nook-teal-deep) !important;
   --color-token-editor-background: var(--nook-mint) !important;
@@ -55,6 +63,33 @@
   --color-token-text-link-foreground: var(--nook-teal-deep) !important;
   --color-token-foreground: var(--nook-brown-deep) !important;
   color-scheme: light !important;
+}
+
+/* Codex 写作块拥有独立文字变量，浅色卡片必须使用深色正文。 */
+[class*="writing-block-surface"] {
+  --oai-wb-text-primary: var(--nook-brown-deep) !important;
+  --oai-wb-text-secondary: #674422 !important;
+  --oai-wb-text-tertiary: var(--nook-ink-contrast) !important;
+  color: var(--nook-brown-deep) !important;
+}
+
+/* 动态状态文字也要始终可读，不使用会闪成白色的渐变文字。 */
+[data-app-shell-main-surface="default"] .loading-shimmer-pure-text,
+[data-app-shell-main-surface="default"] [class*="cadencedShimmer"] {
+  color: var(--nook-ink-contrast) !important;
+  -webkit-text-fill-color: var(--nook-ink-contrast) !important;
+  background-image: none !important;
+}
+
+/* 悬浮小助手的提示条是深色底，保留高对比奶油色文字。 */
+body:not(:has([data-app-shell-main-surface="default"])) .loading-shimmer-pure-text,
+body:not(:has([data-app-shell-main-surface="default"])) .loading-shimmer-pure-text * {
+  color: var(--nook-cream) !important;
+  -webkit-text-fill-color: var(--nook-cream) !important;
+}
+
+body:not(:has([data-app-shell-main-surface="default"])) .loading-shimmer-pure-text {
+  background: #2e251e !important;
 }
 
 html,
