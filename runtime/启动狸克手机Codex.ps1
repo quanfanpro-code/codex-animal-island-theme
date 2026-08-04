@@ -175,6 +175,7 @@ function 注入页面皮肤 {
   )
 
   $套接字 = New-Object Net.WebSockets.ClientWebSocket
+  $套接字.Options.SetRequestHeader("Origin", "http://localhost")
   $超时 = New-Object Threading.CancellationTokenSource -ArgumentList 7000
   try {
     $套接字.ConnectAsync([Uri]$连接地址, $超时.Token).GetAwaiter().GetResult() | Out-Null
@@ -219,7 +220,8 @@ try {
   $端口 = 取得空闲端口
   $参数 = @(
     "--remote-debugging-port=$端口",
-    "--remote-debugging-address=127.0.0.1"
+    "--remote-debugging-address=127.0.0.1",
+    "--remote-allow-origins=http://localhost"
   )
   Start-Process -FilePath $原版程序 -ArgumentList $参数 | Out-Null
   写日志 "已启动原版 Codex，等待界面加载。"

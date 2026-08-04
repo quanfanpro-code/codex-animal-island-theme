@@ -50,6 +50,8 @@ test("外挂始终连接商店原版并复用原用户数据", () => {
   assert.match(启动器, /OpenAI\.Codex_/);
   assert.match(启动器, /ChatGPT\.exe/);
   assert.match(启动器, /--remote-debugging-address=127\.0\.0\.1/);
+  assert.match(启动器, /--remote-allow-origins=http:\/\/localhost/);
+  assert.match(启动器, /SetRequestHeader\("Origin",\s*"http:\/\/localhost"\)/);
   assert.doesNotMatch(启动器, /--user-data-dir/);
   assert.doesNotMatch(启动器, /WindowsApps[^\r\n]*(Set-Content|WriteAllText|Copy-Item)/i);
 });
@@ -97,6 +99,10 @@ test("绿色是主界面底色且装饰不会覆盖侧栏标题", () => {
   assert.match(模板, /--color-token-description-foreground:\s*var\(--nook-ink-contrast\)/);
   assert.match(模板, /--color-token-conversation-body:\s*var\(--nook-ink-contrast\)/);
   assert.match(模板, /writing-block-surface[\s\S]*--oai-wb-text-primary:\s*var\(--nook-brown-deep\)/);
+  assert.match(模板, /data-oai-writing-block-surface[\s\S]*--wb-text-primary:\s*var\(--nook-brown-deep\)/);
+  assert.match(模板, /--color-token-text-link-foreground:\s*var\(--nook-teal-ink\)/);
+  assert.match(模板, /data-app-action-sidebar-project-list-id[\s\S]*color:\s*var\(--nook-ink-contrast\)/);
+  assert.match(模板, /\[data-app-shell-main-surface="default"\] \[class\*="text-token-text-tertiary"\] \{\s*color:\s*var\(--nook-ink-contrast\)/);
   assert.match(模板, /cadencedShimmer[\s\S]*-webkit-text-fill-color:\s*var\(--nook-ink-contrast\)/);
   assert.match(模板, /body:not\(:has\(\[data-app-shell-main-surface="default"\]\)\)[\s\S]*-webkit-text-fill-color:\s*var\(--nook-cream\)/);
   assert.match(模板, /loading-shimmer-pure-text\s*\{\s*background:\s*#2e251e/);
