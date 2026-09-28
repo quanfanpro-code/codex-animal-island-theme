@@ -42,6 +42,7 @@ test("构建结果嵌入网站原素材并保留真实动森界面规则", () =>
   assert.match(样式, /\.composer-surface-chrome/);
   assert.match(样式, /\.sidebar-item/);
   assert.match(样式, /animal-island-runtime-skin/);
+  assert.equal(样式, readFileSync(resolve(项目目录, "theme/runtime-skin.css"), "utf8"), "安装用样式必须与构建结果一致");
 });
 
 test("外挂始终连接商店原版并复用原用户数据", () => {
@@ -106,7 +107,8 @@ test("绿色是主界面底色且装饰不会覆盖侧栏标题", () => {
   assert.match(模板, /cadencedShimmer[\s\S]*-webkit-text-fill-color:\s*var\(--nook-ink-contrast\)/);
   assert.match(模板, /body:not\(:has\(\[data-app-shell-main-surface="default"\]\)\)[\s\S]*-webkit-text-fill-color:\s*var\(--nook-cream\)/);
   assert.match(模板, /loading-shimmer-pure-text\s*\{\s*background:\s*#2e251e/);
-  assert.match(模板, /margin:\s*0 8px 0 0/);
+  assert.match(模板, /margin-right:\s*8px/);
+  assert.doesNotMatch(模板, /margin:\s*0 8px 0 0/);
   assert.match(模板, /border-radius:\s*14px/);
   assert.match(模板, /border-radius:\s*14px 14px 0 0/);
   assert.match(模板, /\[data-app-shell-main-surface="default"\][\s\S]*background-color:\s*var\(--nook-main-green\)/);
@@ -126,4 +128,5 @@ test("便携运行自检能够找到原版 Codex 且不启动新窗口", () => {
     "-SelfTest",
   ], { cwd: 项目目录, encoding: "utf8" });
   assert.match(输出, /SELF_TEST_OK/);
+  assert.match(输出, /APP_ID=OpenAI\.Codex_[^\r\n]+!App/);
 });

@@ -125,7 +125,8 @@ body {
 /* 把主区做成狸克手机的圆角屏幕，而不是只换一个底色。 */
 [data-app-shell-main-surface="default"] {
   position: relative !important;
-  margin: 0 8px 0 0 !important;
+  /* 只设置右侧留白，保留新版与左侧栏一致的原生顶部间距。 */
+  margin-right: 8px !important;
   overflow: hidden !important;
   border: 3px solid rgb(87 57 26 / 24%) !important;
   border-radius: 14px !important;
@@ -172,6 +173,11 @@ body {
 [class*="bg-token-main-surface-primary"] {
   background-color: transparent !important;
   color: var(--nook-brown-deep) !important;
+}
+
+/* 新版顶部渐变位于独立遮罩层，去掉白色背景，避免盖住花纹和正文。 */
+[data-app-shell-main-content-top-fade] > [aria-hidden="true"][class*="MainContentTopFade"] {
+  background: none !important;
 }
 
 /* C「狸克手机」原稿：奶油菜单底、底部蓝绿色岛屿波浪、青绿导航。 */

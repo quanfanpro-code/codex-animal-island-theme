@@ -55,6 +55,56 @@ function 查找原版Codex {
   throw "没有找到微软商店安装的原版 Codex。请先安装或更新原版 Codex。"
 }
 
+function 准备应用激活器 {
+  # 新版 Codex 需要商店应用身份；直接运行安装目录的 EXE 会导致启动失败。
+  if ($null -eq ("CodexAnimalIsland.ApplicationLauncher" -as [type])) {
+    Add-Type -TypeDefinition @"
+using System;
+using System.Runtime.InteropServices;
+namespace CodexAnimalIsland {
+  [ComImport, Guid("2E941141-7F97-4756-BA1D-9DECDE894A3D"),
+   InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+  interface IApplicationActivationManager {
+    void ActivateApplication(
+      [MarshalAs(UnmanagedType.LPWStr)] string appId,
+      [MarshalAs(UnmanagedType.LPWStr)] string arguments,
+      uint options, out uint processId);
+    void ActivateForFile(
+      [MarshalAs(UnmanagedType.LPWStr)] string appId, IntPtr items,
+      [MarshalAs(UnmanagedType.LPWStr)] string verb, out uint processId);
+    void ActivateForProtocol(
+      [MarshalAs(UnmanagedType.LPWStr)] string appId, IntPtr items, out uint processId);
+  }
+  public static class ApplicationLauncher {
+    public static uint Launch(string appId, string arguments) {
+      object manager = Activator.CreateInstance(Type.GetTypeFromCLSID(
+        new Guid("45BA127D-10A8-46EA-8AB7-56EA9078943C")));
+      try {
+        uint processId;
+        ((IApplicationActivationManager)manager).ActivateApplication(
+          appId, arguments, 0, out processId);
+        return processId;
+      } finally { Marshal.ReleaseComObject(manager); }
+    }
+  }
+}
+"@
+  }
+}
+
+function 取得应用标识 {
+  param([string]$程序路径)
+  foreach ($应用包 in @(Get-AppxPackage -Name "OpenAI.Codex" -ErrorAction Stop)) {
+    $清单 = Get-AppxPackageManifest -Package $应用包.PackageFullName -ErrorAction Stop
+    foreach ($应用 in $清单.Package.Applications.Application) {
+      if ((Join-Path $应用包.InstallLocation ([string]$应用.Executable)) -eq $程序路径) {
+        return "{0}!{1}" -f $应用包.PackageFamilyName, $应用.Id
+      }
+    }
+  }
+  throw "没有找到 Codex 的 Windows 应用注册信息。请先从开始菜单打开原版 Codex。"
+}
+
 function 查找皮肤样式 {
   $候选 = @(
     (Join-Path $运行目录 "theme\runtime-skin.css"),
@@ -195,6 +245,8 @@ function 注入页面皮肤 {
 
 try {
   $原版程序 = 查找原版Codex
+  $应用标识 = 取得应用标识 -程序路径 $原版程序
+  准备应用激活器
   $样式文件 = 查找皮肤样式
   $样式内容 = [IO.File]::ReadAllText($样式文件, [Text.Encoding]::UTF8)
   if ($样式内容 -notmatch "animal-island-runtime-skin" -or $样式内容 -notmatch "data:image/") {
@@ -204,6 +256,7 @@ try {
   if ($SelfTest) {
     Write-Output "SELF_TEST_OK"
     Write-Output "CODEX=$原版程序"
+    Write-Output "APP_ID=$应用标识"
     Write-Output "SKIN=$样式文件"
     exit 0
   }
@@ -223,8 +276,8 @@ try {
     "--remote-debugging-address=127.0.0.1",
     "--remote-allow-origins=http://localhost"
   )
-  Start-Process -FilePath $原版程序 -ArgumentList $参数 | Out-Null
-  写日志 "已启动原版 Codex，等待界面加载。"
+  $原版进程编号 = [CodexAnimalIsland.ApplicationLauncher]::Launch($应用标识, ($参数 -join " "))
+  写日志 "已通过 Windows 应用入口启动原版 Codex，进程=$原版进程编号，皮肤端口=$端口，等待界面加载。"
 
   $接口 = "http://127.0.0.1:$端口/json/list"
   $启动截止 = (Get-Date).AddSeconds(60)
