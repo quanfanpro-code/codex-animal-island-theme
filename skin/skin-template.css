@@ -185,14 +185,15 @@ body {
 [data-testid="app-shell-floating-left-panel"] {
   overflow: hidden !important;
   border: 0 !important;
-  border-radius: 14px 14px 0 0 !important;
+  border-radius: 14px !important;
   background-color: var(--nook-sidebar-cream) !important;
   background-image: url("__MENU_BG_SVG__") !important;
   background-repeat: no-repeat !important;
   background-position: center !important;
   background-size: cover !important;
   color: var(--nook-brown-deep) !important;
-  box-shadow: inset -2px 0 0 rgb(24 127 117 / 26%) !important;
+  /* 外层同步裁切底部圆角，去掉贴边阴影，避免内层圆角外露出色块。 */
+  box-shadow: none !important;
 }
 
 /* 拖动条保留原生绝对定位，避免挤占宽度并裁掉列表右侧圆角。 */
@@ -205,8 +206,18 @@ body {
 /* 新版列表面板默认只有左侧圆角，四角统一并裁切内部浅色背景。 */
 .app-shell-left-panel .sidebar-navigation,
 [data-testid="app-shell-floating-left-panel"] .sidebar-navigation {
-  border-radius: 12px !important;
+  border-radius: 14px !important;
   overflow: hidden !important;
+}
+
+/* 滚动条端部箭头会贴到底角，保留滚动滑块并隐藏多余端钮。 */
+.sidebar-navigation [data-app-action-sidebar-scroll] {
+  scrollbar-width: auto !important;
+  scrollbar-color: auto !important;
+}
+
+.sidebar-navigation [data-app-action-sidebar-scroll]::-webkit-scrollbar-button {
+  display: none !important;
 }
 
 .app-shell-left-panel :is(button, a, span, p),

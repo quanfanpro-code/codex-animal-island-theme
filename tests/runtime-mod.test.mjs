@@ -110,7 +110,10 @@ test("绿色是主界面底色且装饰不会覆盖侧栏标题", () => {
   assert.match(模板, /margin-right:\s*8px/);
   assert.doesNotMatch(模板, /margin:\s*0 8px 0 0/);
   assert.match(模板, /border-radius:\s*14px/);
-  assert.match(模板, /border-radius:\s*14px 14px 0 0/);
+  const 侧栏外层 = 模板.match(/\.app-shell-left-panel,\s*\[data-testid="app-shell-floating-left-panel"\]\s*\{([^}]+)\}/)?.[1];
+  assert.ok(侧栏外层);
+  assert.match(侧栏外层, /border-radius:\s*14px\s*!important/);
+  assert.match(侧栏外层, /box-shadow:\s*none\s*!important/);
   assert.match(模板, /\[data-app-shell-main-surface="default"\][\s\S]*background-color:\s*var\(--nook-main-green\)/);
   assert.doesNotMatch(模板, /app-shell-left-panel::before/);
   assert.doesNotMatch(模板, /h1::before|h2::before/);
