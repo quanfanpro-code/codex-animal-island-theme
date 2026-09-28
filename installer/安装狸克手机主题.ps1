@@ -101,7 +101,7 @@ try {
     复制目录内容 -源目录 (Join-Path $主题包目录 "assets") -目标目录 (Join-Path $安装目录 "assets")
   }
   Copy-Item -LiteralPath (Join-Path $主题包目录 "启动狸克手机Codex.vbs") -Destination (Join-Path $安装目录 "启动狸克手机Codex.vbs") -Force
-  foreach ($说明文件 in @("README.md", "sources.lock.json", "素材许可说明.md")) {
+  foreach ($说明文件 in @("README.md", "theme-package.json", "sources.lock.json", "素材许可说明.md")) {
     $来源 = Join-Path $主题包目录 $说明文件
     if (Test-Path -LiteralPath $来源 -PathType Leaf) {
       Copy-Item -LiteralPath $来源 -Destination (Join-Path $安装目录 $说明文件) -Force
