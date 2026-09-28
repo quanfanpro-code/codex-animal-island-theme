@@ -236,6 +236,15 @@ body {
   box-shadow: 0 5px 14px rgb(87 57 26 / 13%) !important;
 }
 
+/* 新版窄侧栏头像容器不能沿用列表留白，否则会被挤成白色竖线。 */
+.app-shell-left-panel nav .sidebar-item:has(button[data-uniform][aria-haspopup="menu"]) {
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
 /* 账户入口原本内外两层都带 sidebar-item，悬停时只保留外层框。 */
 .sidebar-item .sidebar-item {
   width: 100% !important;
@@ -301,13 +310,28 @@ body {
 }
 
 /* 对话、菜单和输入框统一为扎实的奶油色卡片。 */
-.composer-surface-chrome {
+.composer-surface-chrome,
+[data-composer-surface-variant="default"] {
   position: relative !important;
   z-index: 3 !important;
   border: 2px solid rgb(15 145 133 / 48%) !important;
   border-radius: 28px !important;
   background: var(--nook-cream) !important;
   box-shadow: 0 10px 24px rgb(87 57 26 / 16%) !important;
+}
+
+/* 新版输入区遮罩和按钮使用新的颜色变量，限定在输入区适配。 */
+[data-app-shell-main-surface="default"] [aria-hidden="true"].bg-gradient-to-t.from-surface.via-surface {
+  --color-surface: var(--nook-main-green) !important;
+}
+
+[data-composer-surface-variant="default"] {
+  --color-background-composer-primary: var(--nook-teal-deep) !important;
+  --color-text-composer-primary: #fffdf3 !important;
+}
+
+[data-composer-surface-variant="default"] [data-codex-composer] {
+  color: var(--nook-brown-deep) !important;
 }
 
 [data-app-shell-main-surface="default"] [class*="text-token-text-secondary"],
@@ -344,7 +368,9 @@ select {
 
 /* 输入区模型、推理强度和权限文字必须始终清晰。 */
 .composer-surface-chrome button,
-.composer-surface-chrome button span {
+.composer-surface-chrome button span,
+[data-composer-surface-variant="default"] button,
+[data-composer-surface-variant="default"] button span {
   color: var(--nook-brown-deep) !important;
   opacity: 1 !important;
 }
@@ -361,7 +387,8 @@ select {
 .composer-surface-chrome button[data-testid*="send"],
 .composer-surface-chrome button[aria-label*="Send"],
 .composer-surface-chrome button[aria-label*="发送"],
-.composer-surface-chrome button[aria-label="停止"] {
+.composer-surface-chrome button[aria-label="停止"],
+[data-composer-surface-variant="default"] button.bg-composer-primary {
   border: 2px solid rgb(87 57 26 / 18%) !important;
   border-radius: 999px !important;
   background: var(--nook-teal-deep) !important;
