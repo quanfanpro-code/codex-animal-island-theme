@@ -135,6 +135,8 @@ body {
   background-repeat: repeat !important;
   background-size: 470px 470px !important;
   box-shadow: var(--nook-shadow) !important;
+  /* 与底部遮罩共用窗口坐标，保证花纹连续。 */
+  background-attachment: fixed !important;
 }
 
 [data-app-shell-main-surface="default"]::after {
@@ -339,9 +341,15 @@ body {
   box-shadow: 0 10px 24px rgb(87 57 26 / 16%) !important;
 }
 
-/* 新版输入区遮罩和按钮使用新的颜色变量，限定在输入区适配。 */
+/* 底部遮罩沿用主区花纹及坐标，只淡出正文，不再铺另一种纯绿色。 */
 [data-app-shell-main-surface="default"] [aria-hidden="true"].bg-gradient-to-t.from-surface.via-surface {
-  --color-surface: var(--nook-main-green) !important;
+  background-color: var(--nook-main-green) !important;
+  background-image: url("__CONTENT_BG_PC__") !important;
+  background-repeat: repeat !important;
+  background-size: 470px 470px !important;
+  background-position: 0 0 !important;
+  background-attachment: fixed !important;
+  mask-image: linear-gradient(to bottom, transparent, #000 32px) !important;
 }
 
 [data-composer-surface-variant="default"] {
