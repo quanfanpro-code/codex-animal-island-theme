@@ -195,10 +195,18 @@ body {
   box-shadow: inset -2px 0 0 rgb(24 127 117 / 26%) !important;
 }
 
-.app-shell-left-panel > div,
-[data-testid="app-shell-floating-left-panel"] > div {
+/* 拖动条保留原生绝对定位，避免挤占宽度并裁掉列表右侧圆角。 */
+.app-shell-left-panel > div:not(:has(> [role="separator"])),
+[data-testid="app-shell-floating-left-panel"] > div:not(:has(> [role="separator"])) {
   position: relative !important;
   z-index: 1 !important;
+}
+
+/* 新版列表面板默认只有左侧圆角，四角统一并裁切内部浅色背景。 */
+.app-shell-left-panel .sidebar-navigation,
+[data-testid="app-shell-floating-left-panel"] .sidebar-navigation {
+  border-radius: 12px !important;
+  overflow: hidden !important;
 }
 
 .app-shell-left-panel :is(button, a, span, p),
@@ -350,11 +358,10 @@ body {
   box-shadow: var(--nook-shadow) !important;
 }
 
-/* 账户菜单与剩余用量区域始终使用深棕字，避免文字陷进浅色背景。 */
+/* 菜单使用深棕字，保留原生透明度，避免隐藏的菜单页和提示文字重叠。 */
 [role="menu"] *,
 [class*="bg-token-dropdown-background"] * {
   color: var(--nook-brown-deep) !important;
-  opacity: 1 !important;
 }
 
 input,
@@ -366,13 +373,12 @@ select {
   color: var(--nook-brown-deep) !important;
 }
 
-/* 输入区模型、推理强度和权限文字必须始终清晰。 */
+/* 输入区使用深棕字，保留原生透明度，避免未选中的强度文字产生重影。 */
 .composer-surface-chrome button,
 .composer-surface-chrome button span,
 [data-composer-surface-variant="default"] button,
 [data-composer-surface-variant="default"] button span {
   color: var(--nook-brown-deep) !important;
-  opacity: 1 !important;
 }
 
 .composer-surface-chrome button[class*="text-token-text-tertiary"] {
