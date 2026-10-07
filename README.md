@@ -2,7 +2,7 @@
 
 这是给 Windows 原版 Codex 加的一层动森风格界面皮肤。
 
-当前版本：**1.26**（2026-09-28）。本版本汇总当天的新版 Codex 启动兼容及界面修复，版本号与 `theme-package.json` 一致。
+当前版本：**1.27**（2026-10-07）。修复新版 Codex 输入区外围白底与白色渐变，版本号与 `theme-package.json` 一致。
 
 它只改变原版 Codex 已经显示出来的界面，不读取、不复制、不迁移账号、任务、项目、设置或聊天数据，也不修改微软商店里的 Codex 安装文件。
 
@@ -14,6 +14,14 @@
 4. 以后双击桌面的“Codex 狸克手机”即可带皮肤启动；从原 Codex 图标启动仍是原界面。
 
 安装不需要管理员权限，也不需要 Node 或 Python；需要 PowerShell 7。主题会自动寻找这台 Windows 电脑上最新的微软商店版 Codex。
+
+## 1.27 兼容性修复（2026-10-07）
+
+- 适配新版输入区拆开的上方渐变层和底部背景层，消除白色横条及渐变残留。
+- 两层均沿用聊天区花纹及窗口坐标，上方淡出正文，下方保持完整背景；保留奶油色输入框及原生布局。
+- 兼容旧版单层渐变遮罩。
+
+已在 Windows 商店版 Codex `26.1002.7124.0` 的实际运行窗口验证，并通过浏览器渲染检查、原有 7 项测试及安装入口自检。
 
 ## 1.26 兼容性修复（2026-09-28）
 
@@ -43,6 +51,7 @@
 
 - 构建：`pwsh -NoProfile -File tools/build-runtime-mod.ps1`
 - 测试：`node --test tests/runtime-mod.test.mjs`
+- 浏览器回归检查（Node 22+，先从皮肤入口启动 Codex）：`node tests/底部背景浏览器检查.mjs <本机调试端口>`；端口见本机主题日志最新启动行的“皮肤端口”。仅创建隔离空白框架验证样式，不读取聊天内容。
 - 下载：[GitHub Releases](https://github.com/quanfanpro-code/codex-animal-island-theme/releases)
 
 本项目沿用上游 CC BY-NC 4.0，必须保留署名和修改说明，仅限非商业使用。详情见 `LICENSE` 和 `NOTICE.md`。

@@ -136,6 +136,7 @@ body {
   background-size: 470px 470px !important;
   box-shadow: var(--nook-shadow) !important;
   /* 与底部遮罩共用窗口坐标，保证花纹连续。 */
+  background-position: 0 0 !important;
   background-attachment: fixed !important;
 }
 
@@ -342,7 +343,8 @@ body {
 }
 
 /* 底部遮罩沿用主区花纹及坐标，只淡出正文，不再铺另一种纯绿色。 */
-[data-app-shell-main-surface="default"] [aria-hidden="true"].bg-gradient-to-t.from-surface.via-surface {
+[data-app-shell-main-surface="default"] [aria-hidden="true"].bg-gradient-to-t.from-surface,
+[data-app-shell-main-surface="default"] [data-thread-scroll-footer] > [aria-hidden="true"] {
   background-color: var(--nook-main-green) !important;
   background-image: url("__CONTENT_BG_PC__") !important;
   background-repeat: repeat !important;
@@ -350,6 +352,11 @@ body {
   background-position: 0 0 !important;
   background-attachment: fixed !important;
   mask-image: linear-gradient(to bottom, transparent, #000 32px) !important;
+}
+
+/* 新版上方渐变与下方底色分层，底色保持不透明，避免正文透入输入区。 */
+[data-app-shell-main-surface="default"] [data-thread-scroll-footer] > [aria-hidden="true"] {
+  mask-image: none !important;
 }
 
 [data-composer-surface-variant="default"] {

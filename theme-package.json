@@ -1,7 +1,7 @@
 ﻿{
   "id": "codex-animal-island-nook-phone",
   "name": "Codex 狸克手机",
-  "version": "1.26",
+  "version": "1.27",
   "platform": "Windows 10/11",
   "requires": "PowerShell 7",
   "target": "OpenAI.Codex",
